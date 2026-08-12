@@ -4,7 +4,7 @@
 
 **Pagify** is a modern, AI-powered PDF reader built with Next.js 14, MongoDB, and OpenAI GPT-3.5. Upload PDFs, generate intelligent summaries, ask questions about the content, and listen to answers in Indian English using text-to-speech.
 
-🚀 **Live Demo:** [https://pagify.aakarshtiwari.com](https://pagify.aakarshtiwari.com)
+🚀 **Live Demo:** [https://pagify-two.vercel.app](https://pagify-two.vercel.app)
 
 > "Education is the manifestation of the perfection already in man." — Swami Vivekananda
 
@@ -116,12 +116,6 @@ npm start
    - `MONGODB_URI`
    - `OPENAI_API_KEY`
 4. Deploy!
-
-### Custom Domain Setup
-
-1. Go to Vercel Dashboard → Settings → Domains
-2. Add your custom domain (e.g., `pagify.aakarshtiwari.com`)
-3. Update DNS records as instructed by Vercel
 
 ## 📁 Project Structure
 

@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check file size (5MB limit)
     if (file.size > 5 * 1024 * 1024) {
       return NextResponse.json(
         { error: "PDF exceeds 5MB limit" },
@@ -30,11 +29,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Convert file to buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Parse PDF
     const data = await pdfParse(buffer, { max: 100 });
     const text = data.text;
     const pageCount = data.numpages;
@@ -53,7 +50,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Generate summary using OpenAI
     const summaryResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -71,7 +67,6 @@ export async function POST(req: NextRequest) {
     const summary =
       summaryResponse.choices[0].message.content || "No summary available";
 
-    // Save to database
     const doc = new Document({ text, summary });
     await doc.save();
 

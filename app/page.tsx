@@ -161,7 +161,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Header */}
       <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md shadow-sm border-b">
         <div className="container mx-auto px-4 py-6 text-center">
           <h1 className="text-4xl font-bold text-primary mb-2">Pagify</h1>
@@ -171,9 +170,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-5xl space-y-8">
-        {/* Upload Section */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -236,7 +233,6 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* Summary Section */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <div className="flex items-center justify-between">
@@ -279,7 +275,6 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* Q&A Section */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <div className="flex items-center justify-between">
@@ -358,7 +353,6 @@ export default function Home() {
         </Card>
       </main>
 
-      {/* Footer */}
       <footer className="mt-16 py-8 bg-white border-t">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p className="mb-2">© 2025 Pagify. All rights reserved.</p>

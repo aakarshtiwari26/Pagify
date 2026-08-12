@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     title: "Pagify - AI-Powered PDF Summarizer & Query Tool",
     description:
       "Upload PDFs, get concise summaries, ask questions, and hear answers with Pagify's AI and text-to-speech in Indian English.",
-    url: "https://pagify.aakarshtiwari.com",
+    url: "https://pagify-two.vercel.app",
     type: "website",
     images: [
       {
-        url: "https://pagify.aakarshtiwari.com/images/pagify.webp",
+        url: "https://pagify-two.vercel.app/images/pagify.webp",
         width: 1200,
         height: 630,
         alt: "Pagify Preview",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Pagify - AI-Powered PDF Summarizer & Query Tool",
     description:
       "Pagify: Summarize PDFs, query content, and listen to answers in Indian English.",
-    images: ["https://pagify.aakarshtiwari.com/images/pagify.webp"],
+    images: ["https://pagify-two.vercel.app/images/pagify.webp"],
     site: "@aakarshtiwari08",
   },
 };
