@@ -85,6 +85,10 @@ export default function Home() {
       const result = await response.json();
 
       if (!response.ok) {
+        if (result.type === "quota") {
+          setUploadStatus(`⏳ ${result.error}`);
+          return;
+        }
         throw new Error(result.error || "Failed to process PDF");
       }
 
@@ -117,6 +121,10 @@ export default function Home() {
       const result = await response.json();
 
       if (!response.ok) {
+        if (result.type === "quota") {
+          setQaStatus(`⏳ ${result.error}`);
+          return;
+        }
         throw new Error(result.error || "Failed to get answer");
       }
 
@@ -220,7 +228,9 @@ export default function Home() {
             {uploadStatus && (
               <p
                 className={`text-sm ${
-                  uploadStatus.includes("Error")
+                  uploadStatus.includes("⏳")
+                    ? "text-amber-600"
+                    : uploadStatus.includes("Error")
                     ? "text-destructive"
                     : uploadStatus.includes("✓")
                     ? "text-green-600"
@@ -339,7 +349,9 @@ export default function Home() {
             {qaStatus && (
               <p
                 className={`text-sm ${
-                  qaStatus.includes("Error")
+                  qaStatus.includes("⏳")
+                    ? "text-amber-600"
+                    : qaStatus.includes("Error")
                     ? "text-destructive"
                     : qaStatus.includes("✓")
                     ? "text-green-600"

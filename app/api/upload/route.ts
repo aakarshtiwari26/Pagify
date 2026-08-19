@@ -67,6 +67,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ text, summary }, { status: 200 });
   } catch (error: any) {
     console.error("Upload error:", error);
+
+    if (error.status === 429 || /RESOURCE_EXHAUSTED|quota/i.test(error.message || "")) {
+      return NextResponse.json(
+        {
+          error: "AI usage limit reached for today. Please try again later.",
+          type: "quota",
+        },
+        { status: 429 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Failed to process PDF", details: error.message },
       { status: 500 }
