@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,27 +15,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Answer the question based on the provided context. Be precise and relevant.",
-        },
-        {
-          role: "user",
-          content: `Context: ${context.substring(
-            0,
-            4000
-          )}\nQuestion: ${question}`,
-        },
-      ],
-      max_tokens: 200,
-      temperature: 0.5,
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: `Context: ${context.substring(0, 4000)}\nQuestion: ${question}`,
+      config: {
+        systemInstruction:
+          "Answer the question based on the provided context. Be precise and relevant.",
+        maxOutputTokens: 200,
+        temperature: 0.5,
+      },
     });
 
-    const answer = response.choices[0].message.content || "No answer available";
+    const answer = response.text || "No answer available";
     return NextResponse.json({ answer }, { status: 200 });
   } catch (error: any) {
     console.error("Question error:", error);

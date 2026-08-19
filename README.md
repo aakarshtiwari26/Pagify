@@ -2,7 +2,7 @@
 
 ![Pagify Preview](./public/images/pagify.webp)
 
-**Pagify** is a modern, AI-powered PDF reader built with Next.js 14, MongoDB, and OpenAI GPT-3.5. Upload PDFs, generate intelligent summaries, ask questions about the content, and listen to answers in Indian English using text-to-speech.
+**Pagify** is a modern, AI-powered PDF reader built with Next.js 14, MongoDB, and Google Gemini. Upload PDFs, generate intelligent summaries, ask questions about the content, and listen to answers in Indian English using text-to-speech.
 
 🚀 **Live Demo:** [https://pagify-two.vercel.app](https://pagify-two.vercel.app)
 
@@ -11,7 +11,7 @@
 ## ✨ Features
 
 - 📄 **PDF Upload**: Upload PDFs up to 5MB and 10 pages
-- 🤖 **AI Summarization**: Get concise summaries using OpenAI GPT-3.5-turbo
+- 🤖 **AI Summarization**: Get concise summaries using Google Gemini
 - 💬 **Question Answering**: Ask questions and get precise AI-generated answers
 - 🔊 **Text-to-Speech**: Listen to summaries and answers in Indian English (`en-IN`)
 - 🎨 **Modern UI**: Beautiful, responsive design with Tailwind CSS and shadcn/ui
@@ -25,17 +25,17 @@
 - **Styling**: Tailwind CSS, shadcn/ui, Lucide Icons
 - **Backend**: Next.js API Routes (Server Actions)
 - **Database**: MongoDB with Mongoose ODM
-- **AI**: OpenAI GPT-3.5-turbo
+- **AI**: Google Gemini (gemini-2.5-flash)
 - **PDF Processing**: pdf-parse
 - **TTS**: Web Speech API
-- **Deployment**: Vercel (recommended)
+- **Deployment**: Vercel
 
 ## 📋 Prerequisites
 
 - Node.js 18+
 - npm, yarn, or pnpm
 - MongoDB Atlas account ([Sign up free](https://www.mongodb.com/cloud/atlas))
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+- Gemini API key ([Get one here](https://aistudio.google.com/apikey))
 
 ## 🚀 Quick Start
 
@@ -68,7 +68,7 @@ Edit `.env.local` with your credentials:
 
 ```env
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/pagify?retryWrites=true&w=majority
-OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GEMINI_API_KEY=your-gemini-api-key-here
 NODE_ENV=development
 ```
 
@@ -79,9 +79,9 @@ NODE_ENV=development
 3. Click "Connect" → "Connect your application"
 4. Copy the connection string and replace `<username>` and `<password>`
 
-**Get OpenAI API Key:**
+**Get Gemini API Key:**
 
-1. Visit [OpenAI Platform](https://platform.openai.com/api-keys)
+1. Visit [Google AI Studio](https://aistudio.google.com/apikey)
 2. Create a new API key
 3. Copy and paste into `.env.local`
 
@@ -114,7 +114,7 @@ npm start
 2. Import the repository in [Vercel](https://vercel.com)
 3. Add environment variables in Vercel dashboard:
    - `MONGODB_URI`
-   - `OPENAI_API_KEY`
+   - `GEMINI_API_KEY`
 4. Deploy!
 
 ## 📁 Project Structure
@@ -252,7 +252,7 @@ Edit `app/globals.css` to customize the color scheme:
 ### PDF Upload Fails
 
 - Ensure file is under 5MB and 10 pages
-- Check OPENAI_API_KEY is valid
+- Check GEMINI_API_KEY is valid
 - Verify MongoDB connection
 
 ### TTS Not Working
@@ -283,7 +283,7 @@ MIT License © 2025 Aakarsh Tiwari
 
 - [Next.js](https://nextjs.org/) - React framework
 - [shadcn/ui](https://ui.shadcn.com/) - UI components
-- [OpenAI](https://openai.com/) - AI models
+- [Google Gemini](https://ai.google.dev/) - AI models
 - [MongoDB](https://www.mongodb.com/) - Database
 - [Vercel](https://vercel.com/) - Deployment platform
 

@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import pdfParse from "pdf-parse";
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import connectDB from "@/lib/db";
 import Document from "@/lib/models/Document";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export async function POST(req: NextRequest) {
   try {
@@ -50,22 +48,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const summaryResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Summarize the following text in 100 words or less. Be concise and capture key points.",
-        },
-        { role: "user", content: text.substring(0, 4000) },
-      ],
-      max_tokens: 150,
-      temperature: 0.5,
+    const summaryResponse = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: text.substring(0, 4000),
+      config: {
+        systemInstruction:
+          "Summarize the following text in 100 words or less. Be concise and capture key points.",
+        maxOutputTokens: 150,
+        temperature: 0.5,
+      },
     });
 
-    const summary =
-      summaryResponse.choices[0].message.content || "No summary available";
+    const summary = summaryResponse.text || "No summary available";
 
     const doc = new Document({ text, summary });
     await doc.save();

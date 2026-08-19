@@ -36,3 +36,4 @@ next-env.d.ts
 # Old folders
 backend/
 frontend/
+.env*
