@@ -25,7 +25,7 @@
 - **Styling**: Tailwind CSS, shadcn/ui, Lucide Icons
 - **Backend**: Next.js API Routes (Server Actions)
 - **Database**: MongoDB with Mongoose ODM
-- **AI**: Google Gemini (gemini-2.5-flash)
+- **AI**: Google Gemini (gemini-3.6-flash)
 - **PDF Processing**: pdf-parse
 - **TTS**: Web Speech API
 - **Deployment**: Vercel

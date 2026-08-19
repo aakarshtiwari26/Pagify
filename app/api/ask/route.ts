@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, ThinkingLevel } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
@@ -16,13 +16,14 @@ export async function POST(req: NextRequest) {
     }
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: `Context: ${context.substring(0, 4000)}\nQuestion: ${question}`,
       config: {
         systemInstruction:
           "Answer the question based on the provided context. Be precise and relevant.",
-        maxOutputTokens: 200,
+        maxOutputTokens: 1024,
         temperature: 0.5,
+        thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
       },
     });
 
